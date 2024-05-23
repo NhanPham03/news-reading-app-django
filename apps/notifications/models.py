@@ -1,10 +1,12 @@
 from django.db import models
-from apps.users.models import User
+from django.conf import settings
+from apps.articles.models import Article
 
 class Notification(models.Model):
-  content = models.CharField(max_length=255)
-  user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notifications')
-  created_at = models.DateTimeField(auto_now_add=True)
+  recipient = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='notifications')
+  message = models.TextField(max_length=255)
+  article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='notifications')
+  timestamp = models.DateTimeField(auto_now_add=True)
 
   class Meta:
     db_table = 'notifications'

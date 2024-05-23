@@ -33,7 +33,7 @@ if ENV == 'production':
 else:
     DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -52,15 +52,16 @@ INSTALLED_APPS = [
 
     # Required apps
     'apps.roles',
+    'apps.categories',
     'apps.users',
-    'apps.notifications',
     'apps.articles',
     'apps.comments',
     'apps.commissions',
     'apps.commission_user',
     'apps.login',
     'apps.followers',
-    'apps.ratings'
+    'apps.ratings',
+    'apps.notifications'
 ]
 
 MIDDLEWARE = [
@@ -77,6 +78,9 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
+    'http://localhost:5555',
+    'http://127.0.0.1:5555',
+    'ws://127.0.0.1:56421',
 ]
 
 ROOT_URLCONF = 'NewsReadingApp_Core.urls'

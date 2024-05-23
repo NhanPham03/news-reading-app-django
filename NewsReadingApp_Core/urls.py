@@ -20,10 +20,17 @@ from routers import router
 
 from apps.login.views import LoginView
 from apps.articles.views import SummarizeView
+from apps.followers.views import FollowerListView, FollowingListView
+from apps.categories.views import articles_by_category
+from apps.notifications.views import ArticlePublisherNotificationView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include((router.urls, 'core_api'), namespace='core_api')),
     path('api/login/', LoginView.as_view(), name='login'),
     path('api/summary/', SummarizeView.as_view(), name='summary'),
+    path('api/followers/<int:user_id>/', FollowerListView.as_view(), name='follower_list'),
+    path('api/following/<int:user_id>/', FollowingListView.as_view(), name='following_list'),
+    path('articles/category/<str:category_name>/', articles_by_category, name='articles_by_category'),
+    path('api/notify/<int:user_id>/<str:articles_title>/', ArticlePublisherNotificationView.as_view(), name='article_publish_notification'),
 ]
