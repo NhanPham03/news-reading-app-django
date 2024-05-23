@@ -1,6 +1,7 @@
 from enum import Enum
 
 class Category(Enum):
+  UNCATEROGIZED = 'Uncategorized'
   SPORTS = 'Sports'
   TECHNOLOGY = 'Technology'
   ENTERTAINMENT = 'Entertainment'
