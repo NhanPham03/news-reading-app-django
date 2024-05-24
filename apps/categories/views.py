@@ -7,7 +7,11 @@ from apps.categories.serializers import ArticleSerializer
 from apps.categories.enums import Category
 
 @api_view(['GET'])
-def articles_by_category(request, category_name):
+def articles_by_category(request):
+  category_name = request.GET.get('category_name')
+  if not category_name:
+    return Response({'error': 'category_name parameter is required'}, status=status.HTTP_400_BAD_REQUEST)
+
   category_value = None
   for category in Category:
     if category.name.lower() == category_name.lower():
